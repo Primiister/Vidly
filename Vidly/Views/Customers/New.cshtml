@@ -13,8 +13,7 @@
         @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Birthdate) <!-- If the name of Birthdate is changed in C# it will be changed here but the label name will be changed through the display annotation in customer.cs. -->
-        <label for="Birthdate">Date of Birth</label> <!-- If the name of Birthdate is changed in C# it will not be changed here. -->
+        @Html.LabelFor(m => m.Birthdate) <!-- The label for this comes from the Display annotation in Customer.cs -->
         @Html.TextBoxFor(m => m.Birthdate, new { @class = "form-control" })
     </div>
     <div class="checkbox">
