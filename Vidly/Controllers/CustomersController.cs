@@ -31,9 +31,18 @@ namespace Vidly.Controllers
             return View("CustomerForm", viewModel);
         }
         [HttpPost]
-        public ActionResult Create(Customer customer)
+        public ActionResult Save(Customer customer)
         {
-            _context.Customers.Add(customer);
+            if (customer.Id == 0)
+            {
+                _context.Customers.Add(customer);
+            }
+            else
+            {
+                var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
+
+                TryUpdateModel(customerInDb); // Opens security holes in application, additional key value pairs will update all properties 
+            }
             _context.SaveChanges(); // Generates SQL statements at runtime to add to the database
 
             return RedirectToAction("Index", "Customers");
