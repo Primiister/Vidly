@@ -101,8 +101,9 @@ namespace Vidly.Controllers
                     movie.DateAdded = DateTime.Now;
                     _context.Movies.Add(movie);
                 }
-                catch(DbEntityValidationException e){
-                    Console.WriteLine(e); // Try catch is to catch entity validation errors
+                catch (DbEntityValidationException e)
+                {
+                    Console.WriteLine(e);
                 }
             }
             else
