@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web.Mvc;
 using Vidly.Migrations;
@@ -95,8 +96,14 @@ namespace Vidly.Controllers
         {
             if (movie.Id == 0)
             {
-                movie.DateAdded = DateTime.Now;
-                _context.Movies.Add(movie);
+                try
+                {
+                    movie.DateAdded = DateTime.Now;
+                    _context.Movies.Add(movie);
+                }
+                catch(DbEntityValidationException e){
+                    Console.WriteLine(e); // Try catch is to catch entity validation errors
+                }
             }
             else
             {
