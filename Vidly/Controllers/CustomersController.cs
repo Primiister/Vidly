@@ -41,7 +41,14 @@ namespace Vidly.Controllers
             {
                 var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
 
-                TryUpdateModel(customerInDb); // Opens security holes in application, additional key value pairs will update all properties 
+                TryUpdateModel(customerInDb, "", new string[] { "Name", "Email" }); 
+
+                // Updating properties manually is more secure
+
+                customerInDb.Name = customer.Name;
+                customerInDb.Birthdate = customer.Birthdate;
+                customerInDb.MembershipTypeId = customer.MembershipTypeId;
+                customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
             }
             _context.SaveChanges(); // Generates SQL statements at runtime to add to the database
 
