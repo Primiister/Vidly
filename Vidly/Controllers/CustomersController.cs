@@ -22,10 +22,11 @@ namespace Vidly.Controllers
         }
 
         public ActionResult New()
-        {
+        { 
             var membershipTypes = _context.MembershipTypes.ToList();
             var viewModel = new CustomerFormViewModel
             {
+                Customer = new Customer(), // new customer will mean that is's properties are initialised to their default values
                 MembershipTypes = membershipTypes
             };
             return View("CustomerForm", viewModel);
